@@ -19,8 +19,8 @@ namespace Zammad.Client.Resources
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("assignment_timeout")]
-        public TimeSpan? AssignmentTimeout { get; set; }
+        //[JsonProperty("assignment_timeout")]
+        //public TimeSpan? AssignmentTimeout { get; set; }
 
         [JsonProperty("follow_up_possible")]
         public string FollowUpPossible { get; set; }
