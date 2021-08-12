@@ -63,7 +63,7 @@ namespace Zammad.Client.Core
                 .Build();
 
             var httpResponse = await SendAsync(httpRequest);
-
+            
             var result = await NewParser(httpResponse)
                 .ParseAsync<TResult>();
 
@@ -80,7 +80,24 @@ namespace Zammad.Client.Core
                 .Build();
 
             var httpResponse = await SendAsync(httpRequest);
+            
+            var result = await NewParser(httpResponse)
+                .ParseAsync<TResult>();
 
+            return result;
+        }
+
+        protected async Task<TResult> PostQueryAsync<TResult>(string path, string query = null)
+        {
+            var httpRequest = new HttpRequestBuilder()
+                .UsePost()
+                .UseRequestUri(_account.Endpoint)
+                .AddPath(path)
+                .UseQuery(query)
+                .Build();
+
+            var httpResponse = await SendAsync(httpRequest);
+            var X = httpResponse.Content.ReadAsStringAsync();
             var result = await NewParser(httpResponse)
                 .ParseAsync<TResult>();
 

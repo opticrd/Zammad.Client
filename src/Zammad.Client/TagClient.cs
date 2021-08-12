@@ -30,7 +30,7 @@ namespace Zammad.Client
 
         public Task<bool> AddTagAsync(string objectName, int objectId, string tagName)
         {
-            return GetAsync<bool>("/api/v1/tags/add", $"object={objectName}&o_id={objectId}&item={tagName}");
+            return PostQueryAsync<bool>("/api/v1/tags/add", $"object={objectName}&o_id={objectId}&item={tagName}");
         }
 
         public Task<bool> RemoveTagAsync(string objectName, int objectId, string tagName)
