@@ -97,7 +97,7 @@ namespace Zammad.Client.Core
                 .Build();
 
             var httpResponse = await SendAsync(httpRequest);
-            var X = httpResponse.Content.ReadAsStringAsync();
+            
             var result = await NewParser(httpResponse)
                 .ParseAsync<TResult>();
 
