@@ -111,5 +111,17 @@ namespace Zammad.Client.Resources
 
         [JsonExtensionData]
         public Dictionary<string, object> CustomAttributes { get; set; }
+
+
+        [JsonProperty("role_ids")]
+        public List<int> RoleIds { get; set; }
+
+        [JsonProperty("group_ids")]
+        public Dictionary<int, List<string>> GroupIds { get; set; }
+
+        [JsonProperty("organization")]
+        public string Organization { get; set; }
+        [JsonProperty("password")]
+        public string Password { get; set; }
     }
 }
