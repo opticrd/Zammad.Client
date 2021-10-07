@@ -83,7 +83,8 @@ namespace Zammad.Client.Core
                 .Build();
 
             var httpResponse = await SendAsync(httpRequest);
-            
+            DebugUtility.Print(httpResponse, "ZAMMAD POST", httpRequest);
+
             var result = await NewParser(httpResponse)
                 .ParseAsync<TResult>();
 
@@ -100,7 +101,8 @@ namespace Zammad.Client.Core
                 .Build();
 
             var httpResponse = await SendAsync(httpRequest);
-            
+            DebugUtility.Print(httpResponse, "ZAMMAD POST QUERY", httpRequest);
+
             var result = await NewParser(httpResponse)
                 .ParseAsync<TResult>();
 
@@ -117,6 +119,7 @@ namespace Zammad.Client.Core
                 .Build();
 
             var httpResponse = await SendAsync(httpRequest);
+            DebugUtility.Print(httpResponse, "ZAMMAD PUT", httpRequest);
 
             var result = await NewParser(httpResponse)
                 .ParseAsync<TResult>();
@@ -134,6 +137,7 @@ namespace Zammad.Client.Core
                 .Build();
 
             var httpResponse = await SendAsync(httpRequest);
+            DebugUtility.Print(httpResponse, "ZAMMAD DELETE", httpRequest);
 
             var result = await NewParser(httpResponse)
                 .ParseAsync<TResult>();
