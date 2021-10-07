@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Zammad.Client.Core.Internal;
 using Zammad.Client.Core.Protocol;
 
 namespace Zammad.Client.Core
@@ -26,6 +27,7 @@ namespace Zammad.Client.Core
                 var httpResponse = await httpClient.SendAsync(httpRequest);
                 if (httpResponse.IsSuccessStatusCode == false)
                 {
+                    DebugUtility.Print(httpResponse, "ZAMMAD EXCEPTION");
                     throw new ZammadException(httpRequest, httpResponse);
                 }
                 return httpResponse;
@@ -63,7 +65,8 @@ namespace Zammad.Client.Core
                 .Build();
 
             var httpResponse = await SendAsync(httpRequest);
-            
+            DebugUtility.Print(httpResponse, "ZAMMAD GET", httpRequest);
+
             var result = await NewParser(httpResponse)
                 .ParseAsync<TResult>();
 
