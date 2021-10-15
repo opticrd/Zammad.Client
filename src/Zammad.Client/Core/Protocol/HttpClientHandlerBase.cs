@@ -11,6 +11,7 @@ namespace Zammad.Client.Core.Protocol
         public HttpClientHandlerBase(string onBehalfOf)
         {
             _onBehalfOf = onBehalfOf;
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; }; //no SSL check needed yet            
         }
 
         protected bool UseBehalfOf => string.IsNullOrEmpty(_onBehalfOf) ? false : true;

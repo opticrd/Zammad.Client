@@ -43,8 +43,8 @@ namespace Zammad.Client.Core
         {
             switch (_account.Authentication)
             {
-                case ZammadAuthentication.Basic: return new BasicHttpClientHandler(_account.User, _account.Password, _account.OnBehalfOf);
-                case ZammadAuthentication.Token: return new TokenHttpClientHandler(_account.Token, _account.OnBehalfOf);
+                case ZammadAuthentication.Basic: return new BasicHttpClientHandler(_account.User, _account.Password, _account.OnBehalfOf) { ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; }};
+                case ZammadAuthentication.Token: return new TokenHttpClientHandler(_account.Token, _account.OnBehalfOf) { ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; } };
                 default: throw new NotImplementedException();
             }
         }

@@ -16,8 +16,8 @@ namespace Zammad.Client.Core.Protocol
         {
             ArgumentCheck.ThrowIfNullOrEmpty(user, nameof(user));
             ArgumentCheck.ThrowIfNullOrEmpty(password, nameof(password));
-
             _authenticationHeader = CreateAuthenticationHeader(user, password);
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; }; //no SSL check needed yet
         }
 
         private AuthenticationHeaderValue CreateAuthenticationHeader(string user, string password)

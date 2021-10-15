@@ -13,7 +13,7 @@ namespace Zammad.Client.Core.Protocol
             : base(onBehalfOf)
         {
             ArgumentCheck.ThrowIfNullOrEmpty(token, nameof(token));
-
+            ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; }; //no SSL check needed yet
             _authenticationHeader = CreateAuthenticationHeader(token);
         }
 
